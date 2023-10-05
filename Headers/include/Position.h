@@ -1,0 +1,14 @@
+//
+// Created by samur on 05/10/2023.
+//
+
+#ifndef P1_SHUNDONGWANG_SAMUELRIJKS_POSITION_H
+#define P1_SHUNDONGWANG_SAMUELRIJKS_POSITION_H
+
+
+class Position {
+
+};
+
+
+#endif //P1_SHUNDONGWANG_SAMUELRIJKS_POSITION_H

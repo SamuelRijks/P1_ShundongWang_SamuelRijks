@@ -1,0 +1,14 @@
+//
+// Created by samur on 05/10/2023.
+//
+
+#ifndef P1_SHUNDONGWANG_SAMUELRIJKS_SNAKE_H
+#define P1_SHUNDONGWANG_SAMUELRIJKS_SNAKE_H
+
+
+class Snake {
+
+};
+
+
+#endif //P1_SHUNDONGWANG_SAMUELRIJKS_SNAKE_H
