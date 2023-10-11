@@ -6,6 +6,8 @@
 #include <string>
 using namespace std;
 
+
+
 #ifndef P1_SHUNDONGWANG_SAMUELRIJKS_MYENUM_H
 #define P1_SHUNDONGWANG_SAMUELRIJKS_MYENUM_H
 
