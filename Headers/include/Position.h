@@ -33,7 +33,7 @@ public:
     }
 //这里用来生成🐍的身体
     void visualitza() const {
-        std::cout << "*";
+        std::cout <<"*";
     }
 //屏幕上显示是的方向，，由蛇的头部使用
     void visualitza(MyEnum::eDirection dir) const {

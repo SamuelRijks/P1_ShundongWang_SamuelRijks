@@ -12,4 +12,5 @@ add_executable(P1_ShundongWang_SamuelRijks Sources/main.cpp
         Headers/include/Snake.h
         Sources/src/Taulell.cpp
         Headers/include/Taulell.h
-       )
+        Headers/include/cogido.h
+)

@@ -76,13 +76,13 @@ public:
 
                     if(aSnake->contains(i,j)){
                         if(aSnake->getcurrentLength()>a){
-                                aSnake->getvector()->visualitza();
-                                a++;}
+                            aSnake->getvector()->visualitza();
+                            a++;}
                         else{
                             aSnake->getvector()->visualitza(aSnake->getCurrentDirection());
                         }
 
-                            }
+                    }
                     else {
                         std::cout << "  ";
                     }
@@ -90,11 +90,28 @@ public:
             }
             std::cout << std::endl;
         }
+
+
     };
     //显示contenidor表格，为奖励设置特殊字符，例如&
 
      bool movimentSerp( MyEnum::eDirection dir){
+         if (aSnake != nullptr) {
+             int* newPos = aSnake->movimentSerp(dir, file, columnes);
+             int fila = newPos[0];
+             int columna = newPos[1];
 
+             if (contrnidor[fila][columna] == 1) {
+                 // 蛇吃到了奖励
+                 contrnidor[fila][columna] = 0;
+                 nBonificacions--;
+                 aSnake->doesntEat();
+             }
+
+             return aSnake->isDead();
+         }
+
+         return true; // 蛇不存在时返回true
     };
     void finalitzar(){
         //清理内存
@@ -102,6 +119,14 @@ public:
             delete aSnake;
         }
     };
+    Snake* getSnake() {
+        return aSnake;
+    }
+    int getContrnidorValue(int row, int col) const {
+        // 在这里可以添加一些范围检查来确保 row 和 col 的值有效
+        return contrnidor[row][col];
+    }
+
 };
 
 
