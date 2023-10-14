@@ -4,7 +4,6 @@
 #include "../Headers/include/Taulell.h"
 #include "../Headers/include/MyEnum.h"
 #include "../Headers/include/Snake.h"
-#include "../Sources/src/MyEnum.cpp"
 
 
 void nuevamatriz(Taulell taulell);
