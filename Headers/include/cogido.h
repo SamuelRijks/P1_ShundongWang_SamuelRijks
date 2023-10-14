@@ -6,6 +6,8 @@
 #define P1_SHUNDONGWANG_SAMUELRIJKS_COGIDO_H
 
 
+#include "Snake.h"
+
 class cogido {
 
 
@@ -94,5 +96,6 @@ if(i>=1&&j>=3&&j<=8&&i) {
 
     }
 
-}else{
+}
+
 #endif //P1_SHUNDONGWANG_SAMUELRIJKS_COGIDO_H

@@ -15,38 +15,26 @@ private:
     int col;
 
 public:
-    Position() : row(-1), col(-1) {}
+    Position();
 
-    Position(int i, int j) : row(i), col(j) {}
+    Position(int i, int j);
 
-    void putData(int newRow, int newCol) {
-        row = newRow;
-        col = newCol;
-    }
+    void putData(int newRow, int newCol);
 
-    int getRow() const {
-        return row;
-    }
+    int getRow() const;
 
-    int getCol() const {
-        return col;
-    }
+    int getCol() const;
+
+
 //这里用来生成🐍的身体
-    void visualitza() const {
-        std::cout <<"*";
-    }
+    void visualitza() const;
+
 //屏幕上显示是的方向，，由蛇的头部使用
-    void visualitza(MyEnum::eDirection dir) const {
-        std::cout << MyEnum::toSymbol(dir);
-    }
+    void visualitza(MyEnum::eDirection dir) const;
 
-    bool operator==(const Position &other) const {
-        return (row == other.row) && (col == other.col);
-    }
+    bool operator==(const Position &other) const;
 
-    bool operator!=(const Position &other) const {
-        return !(*this == other);
-    }
+    bool operator!=(const Position &other) const;
 };
 
 
