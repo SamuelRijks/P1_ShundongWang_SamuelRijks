@@ -6,7 +6,7 @@
 
 
 Snake::Snake(int nBonubicacion) {
-    currentLength = 3 + nBonubicacion;
+    currentLength += nBonubicacion;
     currentDir = MyEnum::Rigth;
     vector = new Position[currentLength];
 

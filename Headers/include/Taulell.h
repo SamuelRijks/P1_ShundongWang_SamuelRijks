@@ -13,9 +13,9 @@
 
 class Taulell {
     private:
-        int file;
-        int columnes;
-        int contrnidor[8][8];
+        const static int files = 8;
+        const static int columnes = 8;
+        int contenidor[files][columnes];
         int nBonificacions;
         Snake* aSnake;
 
@@ -24,9 +24,9 @@ class Taulell {
         // Add other member function declarations here
 
 
-    int getFiles();
+    static int getFiles();
 
-    int getColumnes();
+    static int getColumnes();
 
     int getNBonificacions();
 
@@ -34,13 +34,13 @@ class Taulell {
 
     void visualitzar();
 
-     bool movimentSerp( MyEnum::eDirection dir);
+    bool movimentSerp( MyEnum::eDirection dir);
 
     void finalitzar();
 
     Snake* getSnake();
 
-    int getContrnidorValue(int row, int col) const;
+    int getContenidorValue(int row, int col) const;
 
 };
 

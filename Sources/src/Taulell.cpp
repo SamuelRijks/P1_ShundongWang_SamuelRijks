@@ -4,16 +4,16 @@
 
 #include "../../Headers/include/Taulell.h"
 
-Taulell::Taulell() : file(8), columnes(8), nBonificacions(0), aSnake(new Snake(0)) {
+Taulell::Taulell() :  nBonificacions(0), aSnake(new Snake(0)) {
     for (int a = 0; a < 8; a++) {
         for (int b = 0; b < 8; b++) {
-            contrnidor[a][b] = 0;
+            contenidor[a][b] = 0;
         }
     }
 }
 
 int Taulell::getFiles() {
-    return file;
+    return files;
 }
 
 int Taulell::getColumnes() {
@@ -30,15 +30,15 @@ void Taulell::inici(int quantes) {
 
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> rowDist(1, file - 1);
+    std::uniform_int_distribution<int> rowDist(1, files - 1);
     std::uniform_int_distribution<int> colDist(0, columnes - 1);
 
     while (nBonificacions > 0) {
         int randomRow = rowDist(gen);
         int randomCol = colDist(gen);
 
-        if (contrnidor[randomRow][randomCol] == 0) {
-            contrnidor[randomRow][randomCol] = 1;
+        if (contenidor[randomRow][randomCol] == 0) {
+            contenidor[randomRow][randomCol] = 1;
             nBonificacions--;
             std::cout << "Activem la posicio: " << randomRow << " , " << randomCol << '\n';
 
@@ -51,9 +51,9 @@ void Taulell::inici(int quantes) {
 void Taulell::visualitzar() {
     //画出奖励
     int a = 1;
-    for (int i = 0; i < file; i++) {
+    for (int i = 0; i < files; i++) {
         for (int j = 0; j < columnes; j++) {
-            if (contrnidor[i][j] == 1) {
+            if (contenidor[i][j] == 1) {
                 std::cout << "& ";
             } else {
 
@@ -78,13 +78,13 @@ void Taulell::visualitzar() {
 
 bool Taulell::movimentSerp(MyEnum::eDirection dir) {
     if (aSnake != nullptr) {
-        int* newPos = aSnake->movimentSerp(dir, file, columnes);
+        int* newPos = aSnake->movimentSerp(dir, files, columnes);
         int fila = newPos[0];
         int columna = newPos[1];
 
-        if (contrnidor[fila][columna] == 1) {
+        if (contenidor[fila][columna] == 1) {
             // 蛇吃到了奖励
-            contrnidor[fila][columna] = 0;
+            contenidor[fila][columna] = 0;
             nBonificacions--;
             aSnake->doesntEat();
         }
@@ -107,8 +107,8 @@ Snake *Taulell::getSnake() {
     return aSnake;
 }
 
-int Taulell::getContrnidorValue(int row, int col) const {
+int Taulell::getContenidorValue(int row, int col) const {
     // 在这里可以添加一些范围检查来确保 row 和 col 的值有效
-    return contrnidor[row][col];
+    return contenidor[row][col];
 }
 

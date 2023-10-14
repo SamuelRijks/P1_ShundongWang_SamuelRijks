@@ -4,6 +4,7 @@
 
 #include "../../Headers/include/MyEnum.h"
 
+
 string MyEnum::toName( eDirection dir)
 {
     return nameDir[dir];

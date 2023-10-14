@@ -12,7 +12,7 @@
 class Snake {
 private:
     Position *vector;
-    int currentLength;
+    int currentLength = 3;
     MyEnum::eDirection currentDir;
 
 public:
