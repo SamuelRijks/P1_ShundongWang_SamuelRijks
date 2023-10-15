@@ -9,6 +9,7 @@
 #include <random>
 #include "MyEnum.h"
 #include "Position.h"
+#include <iostream>
 
 
 class Taulell {

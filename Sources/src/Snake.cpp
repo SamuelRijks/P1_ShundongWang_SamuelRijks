@@ -48,7 +48,7 @@ int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
     // 更新currentDir和currentLength属性，并分配蛇头的新位置。
     // 必须检查这个新位置是否已经属于蛇，使用前一个方法进行检查，这将导致蛇的死亡
     this->currentDir = newdir;
-    currentLength++;
+
 
     Position *nuevovector = new Position[currentLength];
     for (int a = 0; a < currentLength; a++) {
@@ -75,6 +75,9 @@ void Snake::doesntEat() {
     if (currentLength > 0) {
         currentLength--;
     }
+}
+void Snake::doesEat() {
+    currentLength++;
 }
 
 Position *Snake::getvector() {

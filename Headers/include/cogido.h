@@ -7,6 +7,7 @@
 
 
 #include "Snake.h"
+#include <iostream>
 
 class cogido {
 
@@ -95,6 +96,30 @@ if(i>=1&&j>=3&&j<=8&&i) {
         }
 
     }
+
+}
+
+void jocdelaserp(Taulell taulell) {
+    int direccionelegida;
+    do{do {
+
+            int a = 1;
+            std::cout << "Tirada: " << a << "\n";
+            for (int dir = MyEnum::Up; dir <= MyEnum::Rigth; dir++) {
+                std::cout << "  " << dir + 1 << ". " << MyEnum::nameDir[dir] << "\n";
+            }
+
+            std::cout << std::endl;
+
+            std::cout << "Especifica un valor dins de l'interval: [1,4]"<< "\n";
+            std::cin >> direccionelegida;
+        }while(direccionelegida<1||direccionelegida>4);
+        MyEnum::eDirection newdir;
+        newdir = static_cast<MyEnum::eDirection>(direccionelegida - 1);
+
+        movimento(newdir, taulell);
+        taulell.visualitzar();
+    }while(taulell.getSnake()->isDead());
 
 }
 

@@ -86,8 +86,9 @@ bool Taulell::movimentSerp(MyEnum::eDirection dir) {
             // 蛇吃到了奖励
             contenidor[fila][columna] = 0;
             nBonificacions--;
-            aSnake->doesntEat();
-        }
+            aSnake->doesEat();
+        }else if (contenidor[fila][columna] == 1){aSnake->doesntEat();}
+
 
         return aSnake->isDead();
     }

@@ -13,4 +13,5 @@ add_executable(P1_ShundongWang_SamuelRijks Sources/main.cpp
         Sources/src/Taulell.cpp
         Headers/include/Taulell.h
         Headers/include/cogido.h
+        Sources/src/Taulell.cpp
 )
