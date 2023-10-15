@@ -50,8 +50,14 @@ void Taulell::inici(int quantes) {
 
 void Taulell::visualitzar() {
     // Dibuja el tablero con bordes en la izquierda y derecha
+    std::cout << " ";
+    for (int j = 0; j < columnes; j++) {
+        std::cout << j << " ";
+    }
+    std::cout << std::endl;
     int a = 1;
     for (int i = 0; i < files; i++) {
+        std::cout << i;
         std::cout << "|"; // Borde izquierdo
         for (int j = 0; j < columnes; j++) {
             if (contenidor[i][j] == 1) {
@@ -60,16 +66,6 @@ void Taulell::visualitzar() {
                 if(!aSnake->visualitza(i,j)){
                     std::cout << "  ";
                 }
-                /*if (aSnake->contains(i, j)) {
-                    if (aSnake->getcurrentLength() > a) {
-                        aSnake->getvector()->visualitza();
-                        a++;
-                    } else {
-                        aSnake->getvector()->visualitza(aSnake->getCurrentDirection());
-                    }
-                } else {
-                    std::cout << "  ";
-                }*/
             }
         }
         std::cout << "|"; // Borde derecho

@@ -60,29 +60,35 @@ bool Snake::isDead() {
 }
 
 int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
-    // 更新currentDir和currentLength属性，并分配蛇头的新位置。
-    // 必须检查这个新位置是否已经属于蛇，使用前一个方法进行检查，这将导致蛇的死亡
-    this->currentDir = newdir;
+    // Obtenir la nova posició de moviment utilitzant MyEnum::movement
+    int* newPos = MyEnum::movement(newdir);
 
+    // Calcular la nova posició del cap de la serp
+    int newHeadRow = vector[0].getRow() + newPos[0];
+    int newHeadCol = vector[0].getCol() + newPos[1];
 
-    Position *nuevovector = new Position[currentLength];
-    for (int a = 0; a < currentLength; a++) {
-        if (a == 0) {
-            nuevovector[a].putData(nRow, nCol);
-        } else {
-            nuevovector[a].putData(vector[a - 1].getRow(), vector[a - 1].getCol());
-        }
+    // Actualitzar la direcció actual i la longitud actual de la serp
+    currentDir = newdir;
+    currentLength++;
+
+    // Comprovar si la nova posició ja pertany a la serp (provocant la mort)
+    if (contains(newHeadRow, newHeadCol)) {
+        currentLength = 0; // Estableix la longitud actual a 0
+        return nullptr;    // Retorna nullptr per indicar que la serp ha mort
     }
-    delete[] vector;
-    vector = nuevovector;
-    if (contains(nRow, nCol)) {
-        currentLength = 0;
+
+    // Actualitzar el vector de posicions de la serp per a la nova posició
+    for (int i = currentLength - 1; i > 0; i--) {
+        vector[i] = vector[i - 1];
     }
-    // 返回蛇头的新位置
-    int *newPos = new int[2];
-    newPos[0] = nRow;
-    newPos[1] = nCol;
-    return newPos;
+
+    vector[0].putData(newHeadRow, newHeadCol);
+
+    // Retorna la nova posició del cap de la serp per comprovar si s'ha menjat una bonificació
+    int* newHeadPos = new int[2];
+    newHeadPos[0] = newHeadRow;
+    newHeadPos[1] = newHeadCol;
+    return newHeadPos;
 }
 
 void Snake::doesntEat() {
