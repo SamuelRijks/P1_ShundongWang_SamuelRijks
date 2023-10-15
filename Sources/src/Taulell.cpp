@@ -49,32 +49,35 @@ void Taulell::inici(int quantes) {
 }
 
 void Taulell::visualitzar() {
-    //画出奖励
+    // Dibuja el tablero con bordes en la izquierda y derecha
     int a = 1;
     for (int i = 0; i < files; i++) {
+        std::cout << "|"; // Borde izquierdo
         for (int j = 0; j < columnes; j++) {
             if (contenidor[i][j] == 1) {
                 std::cout << "& ";
             } else {
-
-                if(aSnake->contains(i,j)){
-                    if(aSnake->getcurrentLength()>a){
-                        aSnake->getvector()->visualitza();
-                        a++;}
-                    else{
-                        aSnake->getvector()->visualitza(aSnake->getCurrentDirection());
-                    }
-
-                }
-                else {
+                if(!aSnake->visualitza(i,j)){
                     std::cout << "  ";
                 }
+                /*if (aSnake->contains(i, j)) {
+                    if (aSnake->getcurrentLength() > a) {
+                        aSnake->getvector()->visualitza();
+                        a++;
+                    } else {
+                        aSnake->getvector()->visualitza(aSnake->getCurrentDirection());
+                    }
+                } else {
+                    std::cout << "  ";
+                }*/
             }
         }
+        std::cout << "|"; // Borde derecho
         std::cout << std::endl;
     }
-
 }
+
+
 
 bool Taulell::movimentSerp(MyEnum::eDirection dir) {
     if (aSnake != nullptr) {
@@ -87,7 +90,7 @@ bool Taulell::movimentSerp(MyEnum::eDirection dir) {
             contenidor[fila][columna] = 0;
             nBonificacions--;
             aSnake->doesEat();
-        }else if (contenidor[fila][columna] == 1){aSnake->doesntEat();}
+        }else if (contenidor[fila][columna] != 1){aSnake->doesntEat();}
 
 
         return aSnake->isDead();

@@ -17,13 +17,28 @@ Snake::Snake(int nBonubicacion) {
 }
 
 bool Snake::visualitza(int row, int col) {
-    //检查蛇是否位于由参数指定的位置
+    /*//检查蛇是否位于由参数指定的位置
     bool a = false;
     if (vector[currentLength - 1].getCol() == col && vector[currentLength - 1].getRow() == row) {
         vector->visualitza();
         return true;
     }
-    return a;
+    return a;*/
+    // Comprueba si la serpiente está en la posición especificada por los argumentos "row" y "col".
+    for (int i = 0; i < currentLength; i++) {
+        if (vector[i].getCol() == col && vector[i].getRow() == row) {
+            // Si la serpiente está en esta posición, llama al método visualitza de la clase Position.
+            if(i < currentLength){
+                vector[i].visualitza(); // Suponiendo que visualitza sea un método de la clase Position.
+
+            }
+            else{
+                vector[i].visualitza(currentDir);
+            }
+            return true;
+        }
+    }
+    return false; // La serpiente no está en la posición especificada.
 }
 
 bool Snake::contains(int row, int col) {

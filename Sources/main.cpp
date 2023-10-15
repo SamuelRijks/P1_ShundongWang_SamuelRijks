@@ -4,18 +4,19 @@
 #include "../Headers/include/Taulell.h"
 #include "../Headers/include/MyEnum.h"
 #include "../Headers/include/Snake.h"
-#include "../Sources/src/MyEnum.cpp"
+/*#include "../Sources/src/MyEnum.cpp"
 #include "../Sources/src/Taulell.cpp"
 #include "../Sources/src/Snake.cpp"
-#include "../Sources/src/Position.cpp"
+#include "../Sources/src/Position.cpp"*/
 
 
 void jocdelaserp(Taulell *pTaulell);
 
 int demanarValor(int min, int max) {
     int valor;
+    std::cout << "Indica quantes bonificacions vols: \n";
     do {
-        std::cout << "Especifica un valor dentro del intervalo [" << min << "," << max << "]: ";
+        std::cout << "Especifica un valor dins de l'interval [" << min << "," << max << "]: ";
         std::cin >> valor;
     } while (valor < min || valor > max);
     return valor;
@@ -48,18 +49,18 @@ int main() {
 
     while (jugarNuevaPartida) {
         // Pregunta al usuario la cantidad de bonificaciones a crear
-        int cantidaddepro = demanarValor(1, 8);
+        int cantidadBonificaciones = demanarValor(1, 8);
 
         // Crea un objeto de la clase Taulell
         Taulell *game = new Taulell;
 
         // Inicializa el juego con la cantidad de bonificaciones
-        game->inici(cantidaddepro);
+        game->inici(cantidadBonificaciones);
 
         // Muestra el tablero
         game->visualitzar();
 
-        std::cout << "Numero de bonificaciones disponibles: " << cantidaddepro << "\n";
+        std::cout << "Numero de bonificaciones disponibles: " << cantidadBonificaciones << "\n";
 
         // Realiza el juego de la serpiente
         jocdelaserp(game);
@@ -77,7 +78,7 @@ int main() {
     }
 }
     void jocdelaserp(Taulell *pTaulell) {
-        while (!pTaulell->getSnake()->isDead()||pTaulell->getNBonificacions() == 0) {
+        while (!pTaulell->getSnake()->isDead()|| !pTaulell->getNBonificacions() == 0) {
             int direccionelegida;
             do {
                 std::cout << "Tirada: " << "\n";
@@ -88,9 +89,12 @@ int main() {
                 std::cout << "Especifica un valor dentro del intervalo [1,4]: ";
                 std::cin >> direccionelegida;
             } while (direccionelegida < 1 || direccionelegida > 4);
-
+            Position *v1 = pTaulell->getSnake()->getvector();
+            std::cout << v1->getCol() << "y" << v1->getRow()  << "\n";
             MyEnum::eDirection newdir = static_cast<MyEnum::eDirection>(direccionelegida - 1);
             movimento(newdir, pTaulell);
+            Position *v = pTaulell->getSnake()->getvector();
+            std::cout << v->getCol() << "y" << v->getRow()  << "\n";
             pTaulell->visualitzar();
         }
     }
