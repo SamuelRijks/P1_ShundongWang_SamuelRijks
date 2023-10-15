@@ -28,7 +28,7 @@ bool Snake::visualitza(int row, int col) {
     for (int i = 0; i < currentLength; i++) {
         if (vector[i].getCol() == col && vector[i].getRow() == row) {
             // Si la serpiente está en esta posición, llama al método visualitza de la clase Position.
-            if(i < currentLength){
+            if(i < currentLength-1){
                 vector[i].visualitza(); // Suponiendo que visualitza sea un método de la clase Position.
 
             }
