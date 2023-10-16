@@ -36,6 +36,8 @@ public:
 
     MyEnum::eDirection getCurrentDirection();
 
+    ~Snake();
+
 };
 #endif //P1_SHUNDONGWANG_SAMUELRIJKS_SNAKE_H
 

@@ -107,3 +107,7 @@ int Snake::getcurrentLength() {
 MyEnum::eDirection Snake::getCurrentDirection() {
     return currentDir;
 }
+
+Snake::~Snake() {
+    delete[] vector;
+}

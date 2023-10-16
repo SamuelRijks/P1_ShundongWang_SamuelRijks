@@ -43,6 +43,8 @@ class Taulell {
 
     int getContenidorValue(int row, int col) const;
 
+    ~Taulell();
+
 };
 
 

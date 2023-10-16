@@ -26,20 +26,20 @@ int Taulell::getNBonificacions() {
 
 void Taulell::inici(int quantes) {
     // 分配奖励到随机位置，并记录奖励数量
-    nBonificacions = quantes;
+    this -> nBonificacions = quantes;
 
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_int_distribution<int> rowDist(1, files - 1);
     std::uniform_int_distribution<int> colDist(0, columnes - 1);
 
-    while (nBonificacions > 0) {
+    while (quantes > 0) {
         int randomRow = rowDist(gen);
         int randomCol = colDist(gen);
 
         if (contenidor[randomRow][randomCol] == 0) {
             contenidor[randomRow][randomCol] = 1;
-            nBonificacions--;
+            quantes--;
             std::cout << "Activem la posicio: " << randomRow << " , " << randomCol << '\n';
 
 
@@ -115,5 +115,10 @@ Snake *Taulell::getSnake() {
 int Taulell::getContenidorValue(int row, int col) const {
     // 在这里可以添加一些范围检查来确保 row 和 col 的值有效
     return contenidor[row][col];
+}
+
+Taulell::~Taulell() {
+    delete aSnake;
+
 }
 
