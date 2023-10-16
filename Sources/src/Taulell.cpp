@@ -75,9 +75,13 @@ void Taulell::visualitzar() {
 
 
 
+
+
 bool Taulell::movimentSerp(MyEnum::eDirection dir) {
     if (aSnake != nullptr) {
         int* newPos = aSnake->movimentSerp(dir, files, columnes);
+
+        // Llama a la función para manejar el rebote en los bordes
         int fila = newPos[0];
         int columna = newPos[1];
 

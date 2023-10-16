@@ -62,28 +62,62 @@ int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
     int* newPos = MyEnum::movement(newdir);
 
     // Calcular la nova posició del cap de la serp
-    int newHeadRow = vector[currentLength-1].getRow() + newPos[0];
-    int newHeadCol = vector[currentLength-1].getCol() + newPos[1];
+    int newHeadRow = vector[currentLength - 1].getRow() + newPos[0];
+    int newHeadCol = vector[currentLength - 1].getCol() + newPos[1];
 
-    // Actualitzar la direcció actual i la longitud actual de la serp
+    // Verificar si la nueva posición estaría fuera de los bordes
+    if (newHeadRow < 0) {
+        newHeadRow = nRow - 1; // Aparece en la parte inferior
+    } else if (newHeadRow >= nRow) {
+        newHeadRow = 0; // Aparece en la parte superior
+    }
+
+    if (newHeadCol < 0) {
+        newHeadCol = nCol - 1; // Aparece en el borde derecho
+    } else if (newHeadCol >= nCol) {
+        newHeadCol = 0; // Aparece en el borde izquierdo
+    }
+
     currentDir = newdir;
 
-
-    // Comprovar si la nova posició ja pertany a la serp (provocant la mort)
     if (contains(newHeadRow, newHeadCol)) {
         currentLength = 0; // Estableix la longitud actual a 0
-
         //return nullptr;    // Retorna nullptr per indicar que la serp ha mort
     }
 
-
     vector[currentLength].putData(newHeadRow, newHeadCol);
     currentLength++;
-    // Retorna la nova posició del cap de la serp per comprovar si s'ha menjat una bonificació
+    // Resto del código para actualizar la serpiente y comprobar otras condiciones
+    // ...
+
+    // Retorna la nueva posición del cap de la serpiente para comprobar si se ha comido una bonificación
     int* newHeadPos = new int[2];
     newHeadPos[0] = newHeadRow;
     newHeadPos[1] = newHeadCol;
     return newHeadPos;
+}
+
+void Snake::rebotarEnBordes() {
+
+    for(int i=0; i < currentLength; i++){
+        if(vector[i].getCol() > 7 || vector[i].getCol() < 0){
+            if (vector[i].getCol() > 7) {
+                vector[i].putData(vector[i].getRow(), 0);
+            }
+            else{
+                vector[i].putData(vector[i].getRow(), 7);
+            }
+        }
+        else if(vector[i].getRow() > 7 || vector[i].getRow() < 0){
+            if (vector[i].getRow() > 7) {
+                vector[i].putData(0, vector[i].getCol());
+            }
+            else{
+                vector[i].putData(7, vector[i].getCol())  ;
+            }
+        }
+
+    }
 }
 
 void Snake::doesntEat() {

@@ -38,6 +38,7 @@ public:
 
     ~Snake();
 
+    void rebotarEnBordes();
 };
 #endif //P1_SHUNDONGWANG_SAMUELRIJKS_SNAKE_H
 
