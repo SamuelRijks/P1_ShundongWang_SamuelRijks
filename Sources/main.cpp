@@ -36,7 +36,6 @@ bool tornarJugar(Taulell *tau) {
     }
 }
 
-
 void jocdelaserp(Taulell *pTaulell) {
     int nTirada = 0;
     while (!pTaulell->getSnake()->isDead() && pTaulell->getNBonificacions() > 0) {
