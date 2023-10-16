@@ -1,13 +1,11 @@
 #include <iostream>
 #include <string>
-#include "../Headers/include/Position.h"
 #include "../Headers/include/Taulell.h"
-#include "../Headers/include/MyEnum.h"
 #include "../Headers/include/Snake.h"
-#include "../Sources/src/MyEnum.cpp"
+/*#include "../Sources/src/MyEnum.cpp"
 #include "../Sources/src/Taulell.cpp"
 #include "../Sources/src/Snake.cpp"
-#include "../Sources/src/Position.cpp"
+#include "../Sources/src/Position.cpp"*/
 
 
 void jocdelaserp(Taulell *pTaulell);
@@ -68,10 +66,7 @@ int main() {
         // Libera la memoria del objeto Taulell
         delete game;
 
-        // Pregunta al jugador si desea jugar otra partida
-
-            // Pregunta al jugador si desea jugar otra partida
-            jugarNuevaPartida = tornarJugar(game);
+        jugarNuevaPartida = tornarJugar(game);
 
 
         return 0;
@@ -81,6 +76,8 @@ int main() {
         while (!pTaulell->getSnake()->isDead()|| !pTaulell->getNBonificacions() == 0) {
             int direccionelegida;
             do {
+                std::cout << "Numero de bonificaciones disponibles: " << pTaulell->getNBonificacions() << "\n";
+
                 std::cout << "Tirada: " << "\n";
                 for (int dir = MyEnum::Up; dir <= MyEnum::Rigth; dir++) {
                     std::cout << dir + 1 << ". " << MyEnum::nameDir[dir] << "\n";
@@ -89,12 +86,8 @@ int main() {
                 std::cout << "Especifica un valor dentro del intervalo [1,4]: ";
                 std::cin >> direccionelegida;
             } while (direccionelegida < 1 || direccionelegida > 4);
-            Position *v1 = pTaulell->getSnake()->getvector();
-            std::cout << v1->getCol() << "y" << v1->getRow()  << "\n";
             MyEnum::eDirection newdir = static_cast<MyEnum::eDirection>(direccionelegida - 1);
             movimento(newdir, pTaulell);
-            Position *v = pTaulell->getSnake()->getvector();
-            std::cout << v->getCol() << "y" << v->getRow()  << "\n";
             pTaulell->visualitzar();
         }
     }

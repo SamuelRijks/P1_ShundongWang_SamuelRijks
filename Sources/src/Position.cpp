@@ -23,7 +23,7 @@ int Position::getCol() const {
 }
 
 void Position::visualitza() const {
-    std::cout <<"*";
+    std::cout <<"* ";
 }
 
 void Position::visualitza(MyEnum::eDirection dir) const {

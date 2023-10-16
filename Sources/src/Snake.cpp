@@ -53,10 +53,8 @@ bool Snake::contains(int row, int col) {
 
 bool Snake::isDead() {
     //判断🐍是否死亡
-    if (currentLength <= 0) {
-        return true;
-    }
-    return false;
+
+    return currentLength <= 0;
 }
 
 int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
@@ -78,10 +76,6 @@ int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
         //return nullptr;    // Retorna nullptr per indicar que la serp ha mort
     }
 
-    // Actualitzar el vector de posicions de la serp per a la nova posició
-    for (int i = currentLength - 1; i > 0; i--) {
-        vector[i] = vector[i - 1];
-    }
 
     vector[currentLength].putData(newHeadRow, newHeadCol);
     currentLength++;
@@ -93,13 +87,13 @@ int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
 }
 
 void Snake::doesntEat() {
-    // 当蛇没有吃到奖励时，删除蛇的最后一个位置
     if (currentLength > 0) {
+        for (int i = 0; i < currentLength; i++) {
+            vector[i] = vector[i+1];
+        }
         currentLength--;
     }
-}
-void Snake::doesEat() {
-    currentLength++;
+
 }
 
 Position *Snake::getvector() {
