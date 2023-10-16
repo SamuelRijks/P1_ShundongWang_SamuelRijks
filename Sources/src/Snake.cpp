@@ -64,17 +64,18 @@ int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
     int* newPos = MyEnum::movement(newdir);
 
     // Calcular la nova posició del cap de la serp
-    int newHeadRow = vector[0].getRow() + newPos[0];
-    int newHeadCol = vector[0].getCol() + newPos[1];
+    int newHeadRow = vector[currentLength-1].getRow() + newPos[0];
+    int newHeadCol = vector[currentLength-1].getCol() + newPos[1];
 
     // Actualitzar la direcció actual i la longitud actual de la serp
     currentDir = newdir;
-    currentLength++;
+
 
     // Comprovar si la nova posició ja pertany a la serp (provocant la mort)
     if (contains(newHeadRow, newHeadCol)) {
         currentLength = 0; // Estableix la longitud actual a 0
-        return nullptr;    // Retorna nullptr per indicar que la serp ha mort
+
+        //return nullptr;    // Retorna nullptr per indicar que la serp ha mort
     }
 
     // Actualitzar el vector de posicions de la serp per a la nova posició
@@ -82,8 +83,8 @@ int *Snake::movimentSerp(MyEnum::eDirection newdir, int nRow, int nCol) {
         vector[i] = vector[i - 1];
     }
 
-    vector[0].putData(newHeadRow, newHeadCol);
-
+    vector[currentLength].putData(newHeadRow, newHeadCol);
+    currentLength++;
     // Retorna la nova posició del cap de la serp per comprovar si s'ha menjat una bonificació
     int* newHeadPos = new int[2];
     newHeadPos[0] = newHeadRow;

@@ -4,10 +4,10 @@
 #include "../Headers/include/Taulell.h"
 #include "../Headers/include/MyEnum.h"
 #include "../Headers/include/Snake.h"
-/*#include "../Sources/src/MyEnum.cpp"
+#include "../Sources/src/MyEnum.cpp"
 #include "../Sources/src/Taulell.cpp"
 #include "../Sources/src/Snake.cpp"
-#include "../Sources/src/Position.cpp"*/
+#include "../Sources/src/Position.cpp"
 
 
 void jocdelaserp(Taulell *pTaulell);
