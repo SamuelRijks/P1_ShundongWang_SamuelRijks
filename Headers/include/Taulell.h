@@ -22,8 +22,6 @@ class Taulell {
 
     public:
         Taulell();
-        // Add other member function declarations here
-
 
     static int getFiles();
 
@@ -38,10 +36,6 @@ class Taulell {
     bool movimentSerp( MyEnum::eDirection dir);
 
     void finalitzar();
-
-    Snake* getSnake();
-
-    int getContenidorValue(int row, int col) const;
 
     ~Taulell();
 

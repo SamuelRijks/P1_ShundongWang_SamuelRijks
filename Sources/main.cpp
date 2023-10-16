@@ -20,28 +20,30 @@ int demanarValor(int min, int max) {
     } while (valor < min || valor > max);
     return valor;
 }
+
 bool preguntarSiContinuarJuego() {
     char resposta;
     std::cout << "Vols tornar a jugar una altra partida? (S/N): ";
     std::cin >> resposta;
     return (resposta == 'S' || resposta == 's');
 }
+
 bool tornarJugar(Taulell *tau) {
     if (preguntarSiContinuarJuego()) {
-        // 重新初始化游戏板 *tau
         tau->finalitzar();
-        return true; // 返回 true 表示继续游戏
+        return true;
     } else {
-        return false; // 返回 false 表示退出游戏
+        return false;
     }
 }
 
 void jocdelaserp(Taulell *pTaulell) {
-    int nTirada = 0;
-    while (!pTaulell->getSnake()->isDead() && pTaulell->getNBonificacions() > 0) {
-        int direccionelegida;
+    int nTirada = 1;
+    bool dead = true;
+    while (dead && pTaulell->getNBonificacions() > 0) {
+        int direccionElegida;
         do {
-            nTirada++;
+
             std::cout << "Numero de bonificaciones disponibles: " << pTaulell->getNBonificacions() << "\n";
             std::cout << "Tirada: " << nTirada << "\n";
             std::cout << "********** " << "\n";
@@ -50,11 +52,12 @@ void jocdelaserp(Taulell *pTaulell) {
             }
 
             std::cout << "Especifica un valor dentro del intervalo [1,4]: ";
-            std::cin >> direccionelegida;
+            std::cin >> direccionElegida;
 
-        } while (direccionelegida < 1 || direccionelegida > 4);
-        MyEnum::eDirection newdir = static_cast<MyEnum::eDirection>(direccionelegida - 1);
-        pTaulell->movimentSerp(newdir);
+        } while (direccionElegida < 1 || direccionElegida > 4);
+        nTirada++;
+        MyEnum::eDirection newdir = static_cast<MyEnum::eDirection>(direccionElegida - 1);
+        dead = pTaulell->movimentSerp(newdir);
         pTaulell->visualitzar();
     }
 }
@@ -65,27 +68,22 @@ int main() {
     bool jugarNuevaPartida = true;
 
     while (jugarNuevaPartida) {
-        // Pregunta al usuario la cantidad de bonificaciones a crear
         int cantidadBonificaciones = demanarValor(1, 8);
 
-        // Crea un objeto de la clase Taulell
         Taulell *game = new Taulell;
 
-        // Inicializa el juego con la cantidad de bonificaciones
         game->inici(cantidadBonificaciones);
 
-        // Muestra el tablero
         game->visualitzar();
 
-        // Realiza el juego de la serpiente
         jocdelaserp(game);
 
-        // Libera la memoria del objeto Taulell
-        delete game;
+        game->finalitzar();
 
         jugarNuevaPartida = tornarJugar(game);
 
     }
+    std::cout << "Adeu!" << std::endl;
     return 0;
 
 }

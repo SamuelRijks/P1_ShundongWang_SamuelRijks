@@ -16,9 +16,7 @@ private:
     MyEnum::eDirection currentDir;
 
 public:
-    Snake(int nBonubicacion);
-
-
+    Snake(int nBonificacions);
 
     bool visualitza(int row, int col);
 
@@ -30,15 +28,11 @@ public:
 
     void doesntEat();
 
-    Position *getvector();
-
-    int getcurrentLength();
-
-    MyEnum::eDirection getCurrentDirection();
-
-    ~Snake();
+    void finalitzar();
 
     void rebotarEnBordes();
+
+    ~Snake();
 };
 #endif //P1_SHUNDONGWANG_SAMUELRIJKS_SNAKE_H
 
